@@ -1,0 +1,26 @@
+<div class="col-12">
+    <h2>Steam Player: {name}</h2>
+    <img src="{avatar}">
+</div>
+<div class="col-12">
+    <br />
+<h5>NUMBER OF GAMES: {num}</h5>
+</div>
+<div class="col-10">
+    <table class="table dt-responsive nowrap" id="tableGames">
+        <thead>
+        <tr>
+            <th style="text-align: center">id</th>
+            <th style="text-align: center">Juego</th>
+            <th style="text-align: center">Imagen</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+            {content}
+        </tbody>
+    </table>
+</div>
+<script>
+    $('#tableGames').DataTable();
+</script>
