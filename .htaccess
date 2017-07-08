@@ -3,9 +3,10 @@ Options +FollowSymlinks
 RewriteEngine on
 
 # display index page
-RewriteRule ^$   index.php [nc,qsa]
-RewriteRule ^check/$   index.php [nc,qsa]
-RewriteRule ^check$   index.php [nc,qsa]
+RewriteRule ^$   views/index.html [nc,qsa]
+RewriteRule ^check/$   views/index.html [nc,qsa]
+RewriteRule ^check$   views/index.html [nc,qsa]
+RewriteRule ^user_details/$   index.php [nc,qsa]
 
-# get steamID from user name
+
 
