@@ -1,0 +1,13 @@
+Este proyecto tiene como finalidad obtener el SteamID de un jugador a partir de su nickname y con
+esa informacion acceder a las estadisticas y las calificaciones de cada juego (del usuario).
+
+Debido a la poca complejidad del proyecto no se optó por utilizar un framework, debido al tamaño del problema a resolver (el cual es
+muy pequeño) y que supondria un mayor consume de recursos del servidor, en su lugar se decidió usar php de manera
+"pura" y la sobreescritura de urls por medio de un archivvo htaccess, es importante enfatizar para que este proyecto funcione es obligatorio que configure su servidor apache2 para que acepte la sobreescritura de url
+con el archivo htaccess asi como es necesario que usted cuente con una conexion a internet.
+
+Si su servidor (de pruebas) no es local recuerde que tiene que cambiar la ruta de los archivos front-end(html5, css, javascript)
+de la siguiente manera:
+http://ip o nombre de su servidor/billpocket/views/
+
+Cualquier duda o comentario por favor no dude en contactarme a mi email: walter.suarez.ramirez@gmail.coms
