@@ -1,0 +1,11 @@
+# Turn rewrite engine on
+Options +FollowSymlinks
+RewriteEngine on
+
+# display index page
+RewriteRule ^$   index.php [nc,qsa]
+RewriteRule ^check/$   index.php [nc,qsa]
+RewriteRule ^check$   index.php [nc,qsa]
+
+# get steamID from user name
+
