@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Startup UI Kit - Free Sample</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="shortcut icon" href="images/favicon.ico">
+		<link rel="stylesheet" href="http://localhost/billpocket/views/bootstrap/css/bootstrap.css">
+		<link rel="stylesheet" href="http://localhost/billpocket/views/css/font-awesome.min.css">
+		<link rel="stylesheet" href="http://localhost/billpocket/views/css/style.css">
+		<link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,400i,700,700i|Montserrat:200,200i,300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+		<link href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet">
+
+	</head>
+	<body>
+		
+		<section class="cover-1 text-center">
+			<nav class="navbar navbar-toggleable-sm navbar-custom navbar-inverse">
+				<div class="container">
+					<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarToggler-1" aria-controls="navbarToggler-1" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<a class="navbar-brand" href="#">Reto Billpocket</a>
+				</div>
+			</nav>
+			<div class="cover-container pb-5">
+				<div class="cover-inner container">
+						<h1 class="jumbotron-heading">Buscador de Usuarios  <strong>Steam</strong></h1>
+						<p class="lead">Aca va una descripcion de lo que hace esta web app</p>
+						<p class="center"><input class="form-control mb-6 mr-6 ml-6" placeholder="Ingrese Nickname del jugador a buscar" /> </p>
+						<p>
+							<a href="#" class="btn btn-primary btn-lg mb-2 mr-2 ml-2" onclick="displayUserTable(1)">Buscar</a>
+						</p>
+				</div>
+			</div>
+			<div id="displayResults" class="row  justify-content-center">
+
+			</div>
+		</section>
+
+
+		
+		<footer class="footer-3">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<ul class="nav-footer mt-2 mt-md-0 ">
+							<li class="nav-item active">
+								<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">About</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Our Work</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Contact</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="container-fluid">
+				<div class="divider"></div>
+			</div>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6 text-center text-md-left mt-2 mb-3 pt-1">
+						<p>Copyright &copy; YourStartup. All rights reserved.</p>
+					</div>
+					<div class="col-md-6 text-center text-md-right mb-4">
+						<ul class="social">
+							<li><a href="#" title="Facebook" class="fa fa-facebook"></a></li>
+							<li><a href="#" title="Twitter" class="fa fa-twitter"></a></li>
+							<li><a href="#" title="Google+" class="fa fa-google"></a></li>
+							<li><a href="#" title="Dribbble" class="fa fa-dribbble"></a></li>
+							<li><a href="#" title="Instagram" class="fa fa-instagram"></a></li>
+							<div class="clear"></div>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+		<!-- modal for display player's datails -->
+		<!-- Modal -->
+		<div class="modal fade" id="modalPlayer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="title">Detalles del usuario</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<!-- Nav tabs -->
+						<ul class="nav nav-tabs" role="tablist">
+							<li class="nav-item">
+								<a class="nav-link active" data-toggle="tab" href="#home" role="tab">Datos Generales</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" data-toggle="tab" href="#profile" role="tab">Historial de Juegos</a>
+							</li>
+						</ul>
+
+						<!-- Tab panes -->
+						<div class="tab-content">
+							<div class="tab-pane active" id="home" role="tabpanel">DAtos del usuario</div>
+							<div class="tab-pane" id="profile" role="tabpanel">
+								<div class="row  justify-content-center">
+									<div class="col-10">
+										<br />
+										<br />
+								<table class="table" id="tableGames">
+									<thead>
+										<tr>
+											<th>#</th>
+											<th>Juego</th>
+											<th>Acciones</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>1</td>
+											<td>Rise Of Nations</td>
+											<td><button onclick="displayModalGame()" class="btn btn-success">Ver Detalles</button></td>
+										</tr>
+									</tbody>
+								</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- game ddetails modal -->
+		<div style="z-index:100000;" id="modalGame" class="modal fade bd-example-modal-lg" tabindex="1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Detalles del Juego</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						...
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Placed at the end of the document so the pages load faster -->
+		<script src="http://localhost/billpocket/views/js/jquery-3.1.1.min.js"></script>
+		<script src="http://localhost/billpocket/views/bootstrap/js/bootstrap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+
+		<script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+		<script src="http://localhost/billpocket/views/js/functions.js"></script>
+	</body>
+</html>
