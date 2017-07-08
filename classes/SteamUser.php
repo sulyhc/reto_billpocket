@@ -1,53 +1,78 @@
 <?php
-require_once 'ApiClient.php';
-/**
- * Created by PhpStorm.
- * User: walter
- * Date: 7/07/17
- * Time: 08:48 PM
- */
 
-class SteamUser{
 
+class SteamUser
+{
+
+    /**
+     * @var defined global parameters as default url api and private key api
+     */
     private $settings;
 
-    function __construct(){
+    function __construct()
+    {
+        //start steam settings for work with its API
         $this->readSettings();
     }
 
-    public function getSteamID(){
-        return $this->makeRequest("");
-    }
+    /**
+     * Main function for make request and fetch information from Steam Platform
+     * @param $method String type of information for fetch
+     * @param $params array dictionary with GET url parameters necessary for fetch information
+     * @return Array information from Steam platform
+     */
+   public function fetchInfo($method='', $params=[])
+    {
 
-    public function testFunction(){
-        $params = ['appid'=>440, 'count' => 3];
-        $url = $this->assembleUrl('news', $params);
-        echo $url;
+        $url = $this->assembleUrl($method, $params, true);
         $response = $this->makeRequest($url);
-        echo $response;
+        return $response;
     }
 
-    private function assembleUrl($steamMethod, array $params){
+    /**
+     * Make url from array
+     * @param $steamMethod type of action
+     * @param array $params dictionary with parameters for send to steam api
+     * @param bool $setKey enable private key injection to url parameters
+     * @return String url
+     */
+    private function assembleUrl($steamMethod, array $params, $setKey = False)
+    {
         $url = $this->settings['steam']['url'];
+        if ($setKey) {
+            $params = array_merge($params, array('key' => $this->settings['steam']['key']));
+        }
 
         $urlParams = http_build_query($params);
         $url = str_replace('{interface}', $this->settings['steam_methods'][$steamMethod]['interface'], $url);
         $url = str_replace('{method}', $this->settings['steam_methods'][$steamMethod]['method'], $url);
+        $url = str_replace('{version}', $this->settings['steam_methods'][$steamMethod]['version'], $url);
         $url = str_replace('{paramns}', $urlParams, $url);
 
         return $url;
     }
 
-    private function readSettings(){
+    /**
+     * read settings from .ini file
+     */
+    private function readSettings()
+    {
         $this->settings = parse_ini_file("settings.ini", true);
     }
 
-    private function makeRequest($finaUrl){
+    /**
+     * Make curl request to Steam api
+     * @param String $finaUrl API url of Steam
+     * @return array response from Steam platform
+     */
+    private function makeRequest($finaUrl)
+    {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_URL, $finaUrl);
         $res = curl_exec($ch);
-        return $res;
+        $json_res = json_decode($res, true);
+        return $json_res;
     }
 
 }
